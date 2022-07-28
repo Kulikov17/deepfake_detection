@@ -1,0 +1,9 @@
+torch
+torchvision
+tensorflow
+keras
+opencv-python
+face_recognition
+sklearn
+Pillow
+Flask

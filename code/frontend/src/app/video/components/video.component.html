@@ -1,0 +1,30 @@
+<div class="videoPlayer" *ngIf="isVideoLoad">
+  <video controls autoplay></video>
+</div>
+
+<div class="input-file">
+  <tui-input-file
+    link="Выберите видео"
+    label="или перетащите файл сюда"
+    accept="video/avi,video/mp4"
+    class="container"
+    [maxFileSize]="1073741824"
+    [formControl]="videoControl"
+  ></tui-input-file>
+
+  <button
+    *ngIf="isVideoPredictBtn"
+    tuiButton
+    type="button"
+    appearance="primary"
+    (click)="onPredictVideoClass()"
+  >
+    Проверить видео<br>на Дипфейк
+  </button>
+</div>
+
+<h2 class="prediction" *ngIf="isVideoClass | async">Результат прогноза видео:<br><br>{{ isVideoClass | async | videoClass  }}</h2>
+<div *ngIf="!(isVideoClass | async) && isVideoLoad && !isVideoPredictBtn">
+  <h2 class="prediction">Идет проверка видео. Пожалуйста подождите.</h2>
+  <tui-loader [size]="'xxl'"></tui-loader>
+</div>
